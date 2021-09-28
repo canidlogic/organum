@@ -1,0 +1,70 @@
+%organum-pedal;
+
+# Example pedal map for Organum
+# =============================
+#
+# All pedal maps must begin with the %organum-pedal; signature shown
+# above.  The file follows the Shastina format.
+#
+# The interpreter stack supports three kinds of data:
+#
+#   (1) Integer -- stored by value as signed, 32-bit integer
+#   (2) Float -- stored by value as a finite double-precision number
+#   (3) String -- stored by reference with reference counting
+#
+# Strings are immutable after construction.  Strings only allow visible,
+# printing US-ASCII characters, along with space.  Empty strings are
+# allowed.
+#
+# Between the opening signature and the |; that ends the pedal map, only
+# the following Shastina entity types are allowed:
+#
+#   1. STRING
+#   2. NUMERIC
+#   3. BEGIN GROUP
+#   4. END GROUP
+#   5. ARRAY
+#   6. OPERATION
+#
+# String entities must be enclosed within double quotes, with no prefix
+# before the opening quote.  Apart from visible, printing US-ASCII
+# characters, only space is allowed.  No line break may be present.  The
+# following two escapes are supported:
+#
+#   \\   -- literal backslash
+#   \"   -- literal double quote
+#
+# Unrecognized backslash escapes cause an error.
+#
+# String entities cause a new string to be constructed and a reference
+# to this string to be pushed onto the stack.
+#
+# Numeric entities have the following format:
+#
+#   1. Optionally, a "+" or "-" sign
+#   2. Sequence of zero or more decimal digits
+#   3. Optionally:
+#      a) "." sign, followed by
+#      b) Sequence of zero or more decimal digits
+#   4. Optionally:
+#      a) "e" or "E", follwed by
+#      b) Optional "+" or "-" sign, followed by
+#      c) Sequence of one or more decimal digits
+#
+# At least one decimal digit must be present in (2) or (3).  If neither
+# "." nor "e" nor "E" is present, then the numeric entity is for an
+# integer; otherwise, the numeric entity is for a floating-point value.
+#
+# Grouping follows the usual Shastina convention and is always optional.
+#
+# Arrays cause an integer to be pushed onto the stack at the end of the
+# array indicating how many elements were in the array.  Arrays may be
+# nested.
+
+# To begin a specific pedal map, first the map must be opened with the
+# "begin_map" operation.  This takes an integer that is one or greater.
+# This operation may NOT be nested.
+
+1 begin_map   # Open pedal map #1
+
+# Once a pedal map is open, @@TODO:
